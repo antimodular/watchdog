@@ -7,7 +7,6 @@ In case of the USB camers a simple reboot does not help, since the power to them
 
 ### What:
 This is a shell script that can be placed anywhere you want.
-
 A cron job is set up which run the watchdog.sh every minute.
 
 The watchdog.sh monitors if one or multiple apps are running.
