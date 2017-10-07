@@ -31,9 +31,9 @@ Copy the following commands in to the terminal app.
 
 ## Setup
 ### Task 1: Add your user to the wheel group
-Open a terminal, then type:
-`sudo dscl . append /Groups/wheel GroupMembership admin`
-(replace USER by your user, like admin)
+Open a terminal, then type:<br />
+`sudo dscl . append /Groups/wheel GroupMembership admin`<br />
+(replace USER by your user, like admin)<br />
 Restart your session (logoff+login, or reboot)
 
 ### Task 2: Grant passwordless sudo access to the wheel group
