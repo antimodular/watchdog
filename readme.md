@@ -113,5 +113,5 @@ That's it!
 
 
 ## Troubleshooting
-**-bash: /Users/admin/Desktop/zoomP/watchdog.sh: /bin/bash^M: bad interpreter: No such file or directory**
+**-bash: /Users/admin/Desktop/zoomP/watchdog.sh: /bin/bash^M: bad interpreter: No such file or directory**  
 The file format of your .sh is wrong. Make file unix (LF) via the great app [BBedit](https://www.barebones.com/products/bbedit/)
