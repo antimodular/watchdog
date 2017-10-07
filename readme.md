@@ -1,4 +1,4 @@
-#watchdog.sh + shutdoot.sh
+# watchdog.sh + shutdoot.sh
 
 ## Introduction
 ### Why:
