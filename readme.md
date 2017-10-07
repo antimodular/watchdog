@@ -23,10 +23,10 @@ This has only been tested on macOS 10.10.5 - 10.12
 ## Prepare Computer
 Copy the following commands in to the terminal app.
 
-`defaults write com.apple.CrashReporter DialogType none`
+`defaults write com.apple.CrashReporter DialogType none`<br />
 (If you never want to see the crash report dialogs. log out and in again)
 
-`defaults write -g ApplePersistence -bool no`
+`defaults write -g ApplePersistence -bool no`<br />
 (prevents apps from reopening after restart)
 
 ## Setup
@@ -113,5 +113,5 @@ That's it!
 
 
 ## Troubleshooting
-**-bash: /Users/admin/Desktop/zoomP/watchdog.sh: /bin/bash^M: bad interpreter: No such file or directory**  
+**-bash: /Users/admin/Desktop/zoomP/watchdog.sh: /bin/bash^M: bad interpreter: No such file or directory**
 The file format of your .sh is wrong. Make file unix (LF) via the great app [BBedit](https://www.barebones.com/products/bbedit/)
