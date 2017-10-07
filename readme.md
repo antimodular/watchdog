@@ -23,7 +23,7 @@ This has only been tested on macOS 10.10.5 - 10.12
 ## Prepare Computer
 Copy the following commands in to the terminal app.
 
-`defaults write com.apple.CrashReporter DialogType none`<br />
+`defaults write com.apple.CrashReporter DialogType none`<br>\r\n
 (If you never want to see the crash report dialogs. log out and in again)
 
 `defaults write -g ApplePersistence -bool no`<br />
