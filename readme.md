@@ -23,29 +23,29 @@ This has only been tested on macOS 10.10.5 - 10.12
 ## Prepare Computer
 Copy the following commands in to the terminal app.
 
-`defaults write com.apple.CrashReporter DialogType none`
+`defaults write com.apple.CrashReporter DialogType none`<br />
 (If you never want to see the crash report dialogs. log out and in again)
 
-`defaults write -g ApplePersistence -bool no`
+`defaults write -g ApplePersistence -bool no`<br />
 (prevents apps from reopening after restart)
 
 ## Setup
 ### Task 1: Add your user to the wheel group
-Open a terminal, then type:
-`sudo dscl . append /Groups/wheel GroupMembership admin`
-(replace USER by your user, like admin)
+Open a terminal, then type:<br />
+`sudo dscl . append /Groups/wheel GroupMembership admin`<br />
+(replace USER by your user, like admin)<br />
 Restart your session (logoff+login, or reboot)
 
 ### Task 2: Grant passwordless sudo access to the wheel group
-Open a terminal, then log at root with: `sudo su -`
-(keep it open as root to fix things in case of errors)
-Make a backup of the original sudoers file:
-`cp /etc/sudoers /etc/sudoers.orig`
-Edit the sudoers file (with great care):
-`nano -w /etc/sudoers`
-(uncomment this line by deleting the first "#"):
-**# %wheel ALL=(ALL) NOPASSWD: ALL**
-if it is not present just add it to the end of the file, like on a hackintosh
+Open a terminal, then log at root with: `sudo su -`<br />
+(keep it open as root to fix things in case of errors)<br />
+Make a backup of the original sudoers file:<br />
+`cp /etc/sudoers /etc/sudoers.orig`<br />
+Edit the sudoers file (with great care):<br />
+`nano -w /etc/sudoers`<br />
+(uncomment this line by deleting the first "#"):<br />
+**# %wheel ALL=(ALL) NOPASSWD: ALL**<br />
+if it is not present just add it to the end of the file, like on a hackintosh<br />
 
 exit nano via **control x**, then type **y**, hit **enter**
 Open a new terminal, for testing the change made to the sudoers:
@@ -83,7 +83,7 @@ Enter path to all heartbeat.txt files.
 
 Make any required changes to the script.
 Make sure that the " are straight ones not the angled type of quotation marks.
-Then test it manually to make sure it works as expected. For example:  
+Then test it manually to make sure it works as expected. For example:
 `/Users/YouruserName/Desktop/watchdog.sh`
 
 ### Task 4: Schedule the watchdog to run every minute via cron
