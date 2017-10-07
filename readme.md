@@ -23,7 +23,7 @@ This has only been tested on macOS 10.10.5 - 10.12
 ## Prepare Computer
 Copy the following commands in to the terminal app.
 
-`defaults write com.apple.CrashReporter DialogType none`<br>\r\n
+`defaults write com.apple.CrashReporter DialogType none`
 (If you never want to see the crash report dialogs. log out and in again)
 
 `defaults write -g ApplePersistence -bool no`
@@ -31,9 +31,9 @@ Copy the following commands in to the terminal app.
 
 ## Setup
 ### Task 1: Add your user to the wheel group
-Open a terminal, then type:<br />
-`sudo dscl . append /Groups/wheel GroupMembership admin`  
-(replace USER by your user, like admin)<br />
+Open a terminal, then type:
+`sudo dscl . append /Groups/wheel GroupMembership admin`
+(replace USER by your user, like admin)
 Restart your session (logoff+login, or reboot)
 
 ### Task 2: Grant passwordless sudo access to the wheel group
@@ -83,7 +83,7 @@ Enter path to all heartbeat.txt files.
 
 Make any required changes to the script.
 Make sure that the " are straight ones not the angled type of quotation marks.
-Then test it manually to make sure it works as expected. For example:
+Then test it manually to make sure it works as expected. For example:  
 `/Users/YouruserName/Desktop/watchdog.sh`
 
 ### Task 4: Schedule the watchdog to run every minute via cron
