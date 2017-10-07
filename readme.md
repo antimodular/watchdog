@@ -26,13 +26,13 @@ Copy the following commands in to the terminal app.
 `defaults write com.apple.CrashReporter DialogType none`<br>\r\n
 (If you never want to see the crash report dialogs. log out and in again)
 
-`defaults write -g ApplePersistence -bool no`<br />
+`defaults write -g ApplePersistence -bool no`
 (prevents apps from reopening after restart)
 
 ## Setup
 ### Task 1: Add your user to the wheel group
 Open a terminal, then type:<br />
-`sudo dscl . append /Groups/wheel GroupMembership admin`<br />
+`sudo dscl . append /Groups/wheel GroupMembership admin`  
 (replace USER by your user, like admin)<br />
 Restart your session (logoff+login, or reboot)
 
