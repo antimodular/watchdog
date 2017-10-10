@@ -15,7 +15,7 @@ The watchdog.sh also checks the last modification date/time of a heartbeat.txt f
 If the heartbeat file was not updated in the last `longdelay` seconds the computer get shutdown. Just before the shutdown happens shutboot.sh sets up the computer to start again in `restartdelay` minutes.
 
 ### Who:
-Marc.
+[Marc] (https://github.com/marc-antimodular).
 
 ## Operating systems
 This has only been tested on macOS 10.10.5 - 10.12
