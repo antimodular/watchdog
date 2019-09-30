@@ -155,7 +155,9 @@ fi
 # start the application
 if [[ ${startapp} -eq 1 ]]; then
 echo "$(date) : starting \"${name}\""
-"${app}" 1>/dev/null 2>/dev/null &
+# this line redirecrs all output to trash
+#causes problems with some verions of zoom so commented out
+#"${app}" 1>/dev/null 2>/dev/null &
 sleep 1
 echo "name= ${name}"
 osascript -e "activate application \"${name}\""
