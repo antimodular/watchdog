@@ -2,14 +2,13 @@
 # watchdog script to restart applications if they're not running
 # save it in your project folder
 
-project_folder="/Users/admin/Desktop/zoomP"
-# project_folder="/Applications/of_v0.9.8_osx_release/apps/bilateral"
+project_folder="/Applications/of_v0.10.1_osx_release/apps/borderTuner"
 
 # touch a temp file to "heartbeat" this script (useful for debugging)
 touch "${project_folder}/$(basename $0)-heartbeat.txt"
 
 # uncomment to exit this script (useful for debugging cron)
-#exit
+# exit
 
 # set to 1 to print debug messages
 debug=0
@@ -26,16 +25,12 @@ password="YOUR PASSWORD HERE"
 
 # partial paths of the applications to monitor (relative to the project folder)
 # (the binary is inside the app):
-apps[0]="zoom_pavilion_faceTracker/bin/zoom_pavilion_faceTracker.app/Contents/MacOS/zoom_pavilion_faceTracker"
-apps[1]="face2/bin/zoom_pavilion_faceTracker2.app/Contents/MacOS/zoom_pavilion_faceTracker2"
-apps[2]="zoom_pavilion_blobCam/bin/zoom_pavilion_blobCam.app/Contents/MacOS/zoom_pavilion_blobCam"
-apps[3]="blob2/bin/zoom_pavilion_blobCam2.app/Contents/MacOS/zoom_pavilion_blobCam2"
+apps[0]="NDI-mic-sender/bin/NDI-mic-sender.app/Contents/MacOS/NDI-mic-sender"
+apps[1]="NDI-matrix-receiver/bin/NDI-matrix-receiver.app/Contents/MacOS/NDI-matrix-receiver"
 
 # partial paths of their corresponding heartbeat files:
-beats[0]="zoom_pavilion_faceTracker/bin/data/runLogs/heartbeat.txt"
-beats[1]="face2/bin/data/runLogs/heartbeat.txt"
-beats[2]="zoom_pavilion_blobCam/bin/data/runLogs/heartbeat.txt"
-beats[3]="blob2/bin/data/runLogs/heartbeat.txt"
+beats[0]="NDI-mic-sender/bin/data/runLogs/heartbeat.txt"
+beats[1]="NDI-matrix-receiver/bin/data/runLogs/heartbeat.txt"
 
 # the short heartbeat delay:
 shortdelay=15
@@ -155,8 +150,10 @@ fi
 # start the application
 if [[ ${startapp} -eq 1 ]]; then
 echo "$(date) : starting \"${name}\""
-"${app}" 1>/dev/null 2>/dev/null &
-sleep 1
+# this line redirecrs all output to trash
+#causes problems with some verions of zoom so commented out
+#"${app}" 1>/dev/null 2>/dev/null &
+sleep 2
 echo "name= ${name}"
 osascript -e "activate application \"${name}\""
 eventoccured=1
@@ -167,3 +164,4 @@ done
 $(dirname $0)/shutboot.sh
 
 if [[ ${eventoccured} -eq 1 ]]; then echo; fi
+

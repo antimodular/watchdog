@@ -1,0 +1,74 @@
+Task 0:
+Open a terminal, then type:
+defaults write com.apple.CrashReporter DialogType none  
+(If you never want to see the crash report dialogs. log out and in again)
+
+defaults write -g ApplePersistence -bool no 
+(prevents apps from reopening after restart)
+
+
+Task 1: Add your user to the wheel group
+Open a terminal, then type:
+sudo dscl . append /Groups/wheel GroupMembership admin
+(replace USER by your user, like admin)
+Restart your session (logoff+login, or reboot)
+
+Task 2: Grant passwordless sudo access to the wheel group
+Open a terminal, then log at root with: sudo su -
+(keep it open as root to fix things in case of errors)
+Make a backup of the original sudoers file:
+cp /etc/sudoers /etc/sudoers.orig
+Edit the sudoers file (with great care):
+nano -w /etc/sudoers
+(uncomment this line by deleting the first "#"):
+# %wheel ALL=(ALL) NOPASSWD: ALL
+if it is not present just add it to the end of the file
+
+exit nano via control x, then type y, hit enter
+Open a new terminal, for testing the change made to the sudoers:
+sudo su -
+If it doesn't work:
+- sudo dseditgroup -o edit -a MYUSERNAME  -t user wheel    will add this user to the wheel group
+-  id shows the group
+- then restore the sudoers file from its backup.
+with cp -f /etc/sudoers.orig /etc/sudoers
+
+Task 3: Install the watchdog script
+Create a bin folder for the user scripts:
+mkdir ~/bin
+Copy watchdog.sh to ~/bin
+Make it executable:
+chmod 755 ~/bin/watchdog.sh
+Make any required changes to the script,
+then test it manually to make sure it works as expected:
+~/bin/watchdog.sh
+
+Task 4: Schedule the watchdog to run every minute
+
+type exit to exit sudo superuser. otherwise the cron job you are going to create will be as superuser. this might cause problems if your restarted apps link to libraries that were only install as admin user.
+
+Create a log folder: mkdir ~/log
+Edit your crontab:
+EDITOR=nano crontab -e
+
+crontab -e to enter edit mode
+press i to allow insert mode
+copy past the cron job
+press esc to exit insert mode
+press captial ZZ to exit crontab
+crontab -l to display all cron jobs
+
+
+
+i my case i installed ffmpeg via brew.sh but my app (now running as superuser) crashed because it couldn't find ffmpeg.
+also you apps would not show up in the activity monitor, if runs as superuser
+
+create cron job as regular admin user
+Insert this line:
+*/1 * * * * $HOME/bin/watchdog.sh >> $HOME/log/watchdog.log
+or like this
+*/1 * * * * /Applications/of_v0.10.1_osx_release/apps/matrixRecorder/watchdog/watchdog.sh >> /Applications/of_v0.10.1_osx_release/apps/matrixRecorder/watchdog/log/watchdog.log
+
+*/1 * * * * /Applications/of_v0.10.1_osx_release/apps/voiceBridge/watchdog/watchdog.sh >> /Applications/of_v0.10.1_osx_release/apps/voiceBridge/watchdog/log/watchdog.log
+
+That's it!

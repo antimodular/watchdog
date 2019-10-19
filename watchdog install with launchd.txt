@@ -1,0 +1,70 @@
+Place watchdog folder in same folder as app folder
+
+Task 0:
+Open a terminal, then type:
+defaults write com.apple.CrashReporter DialogType none  
+(If you never want to see the crash report dialogs. log out and in again)
+
+defaults write -g ApplePersistence -bool no 
+(prevents apps from reopening after restart)
+
+
+Task 1: Add your user to the wheel group
+Open a terminal, then type:
+sudo dscl . append /Groups/wheel GroupMembership admin
+(replace USER by your user, like admin)
+Restart your session (logoff+login, or reboot)
+
+Task 2: Grant passwordless sudo access to the wheel group
+Open a terminal, then log at root with: sudo su -
+(keep it open as root to fix things in case of errors)
+Make a backup of the original sudoers file:
+cp /etc/sudoers /etc/sudoers.orig
+Edit the sudoers file (with great care):
+nano -w /etc/sudoers
+(uncomment this line by deleting the first "#"):
+# %wheel ALL=(ALL) NOPASSWD: ALL
+if it is not present just add it to the end of the file
+
+exit nano via control x, then type y, hit enter
+Open a new terminal, for testing the change made to the sudoers:
+sudo su -
+If it doesn't work:
+- sudo dseditgroup -o edit -a MYUSERNAME  -t user wheel    will add this user to the wheel group
+-  id shows the group
+- then restore the sudoers file from its backup.
+with cp -f /etc/sudoers.orig /etc/sudoers
+
+Task 3: Install the watchdog script
+Open a new (none sudo) terminal window.
+Make it executable:
+chmod 755 /Applications/of_v0.10.1_osx_release/apps/borderTuner/watchdog/watchdog.sh 
+Or
+chmod 755   + drag file here
+
+Make any required changes to the script,
+then test it manually to make sure it works as expected:
+~/bin/watchdog.sh
+
+Task 4: Schedule the watchdog to run every minute via LaunchD
+
+Copy file
+watchdog.plist
+To folder
+ /Users/admin/Library/LaunchAgents/
+
+If folder does not exists create one.
+
+In terminal run:
+sudo launchctl load -w /Users/admin/Library/LaunchAgents/watchdog.plist
+
+If ERROR : Path had bad ownership/permissions appears run:
+sudo chown root:wheel /Users/admin/Library/LaunchAgents/watchdog.plist 
+
+Now try the load command again
+sudo launchctl load -w /Users/admin/Library/LaunchAgents/watchdog.plist
+
+in my case i installed ffmpeg via brew.sh but my app (now running as superuser) crashed because it couldn't find ffmpeg.
+also you apps would not show up in the activity monitor, if runs as superuser
+
+That's it!

@@ -1,0 +1,15 @@
+Path
+
+⁨Macintosh HD/⁨Users⁩/admin⁩/⁨Library⁩/LaunchAgents⁩
+
+enable the watchdog
+sudo launchctl load -w /Users/admin/Library/LaunchAgents/watchdog.plist
+
+Disable the watchdog
+sudo launchctl unload  /Users/admin/Library/LaunchAgents/watchdog.plist
+
+ERROR : Path had bad ownership/permissions
+
+change the user and group in one command:
+sudo chown root:wheel /Users/admin/Library/LaunchAgents/watchdog.plist 
+sudo chown root:wheel      + drag plist file in to terminal

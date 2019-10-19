@@ -27,7 +27,7 @@ if [[ -z $debug ]]; then
     exit
 fi
 
-#exit
+exit
 
 pmsched_file="${project_folder}/pmsched.txt"
 # restore previously saved wakeorpoweron event
