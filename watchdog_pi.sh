@@ -23,7 +23,7 @@ startupdelay=120
 restartdelay=2
 
 # user password (for applescript administrative permission)
-password="hemmer"
+password="myPASSWORD"
 
 # partial paths of the applications to monitor (relative to the project folder)
 # (the binary is inside the app):
